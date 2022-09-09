@@ -34,7 +34,7 @@ a {
 }
 
 button {
-    background-color: #225ca3;
+    background-color: #22a326;
     border: 0;
     padding: 1%;
     color: white;
@@ -45,7 +45,7 @@ button {
 }
 
 button:hover {
-    background-color: #3486eb;
+    background-color: #49eb34;
 }
 
 .post-list {
@@ -55,7 +55,7 @@ button:hover {
 }
 
 .go-back {
-    color: #2c2307;
+    color: #b03b2b;
 }
 
 textarea,
@@ -68,7 +68,7 @@ input {
 textarea:focus,
 input:focus {
     outline: none;
-    border: 1px solid #3486eb;
+    border: 1px solid #34eb62;
 }
 
 textarea {
@@ -198,7 +198,7 @@ main {
 .edit-link {
     display: block;
     margin: -1.5% 0 2% 0;
-    color: #2c2307;
+    color: #d14f17;
 }
 
 .comment-form {
@@ -244,7 +244,7 @@ main {
 
 .sign-in-link,
 .login-link {
-    color: #2c2307;
+    color: #cc4015;
 }
 
 .form-heading h1,
