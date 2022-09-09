@@ -1,9 +1,5 @@
 const router = require('express').Router();
-const {
-    User,
-    Post,
-    Comment
-} = require('../../models');
+const { User, Post, Comment} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -35,7 +31,7 @@ router.get("/", (req, res) => {
         });
 });
 
-// Get a single post
+// Get only one post
 router.get("/:id", (req, res) => {
     Post.findOne({
             where: {
@@ -59,7 +55,7 @@ router.get("/:id", (req, res) => {
         .then((dbPostData) => {
             if (!dbPostData) {
                 res.status(404).json({
-                    message: "No post found with this id"
+                    message: "ERROR"
                 });
                 return;
             }
@@ -99,7 +95,7 @@ router.put("/:id", withAuth, (req, res) => {
         .then((dbPostData) => {
             if (!dbPostData) {
                 res.status(404).json({
-                    message: "No post found with this id"
+                    message: "ERROR"
                 });
                 return;
             }
@@ -121,7 +117,7 @@ router.delete("/:id", withAuth, (req, res) => {
         .then((dbPostData) => {
             if (!dbPostData) {
                 res.status(404).json({
-                    message: "No post found with this id"
+                    message: "ERROR"
                 });
                 return;
             }

@@ -1,23 +1,13 @@
+
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const {
-    User,
-    Post,
-    Comment
-} = require('../models');
-
+const {  User,Post,Comment} = require('../models');
 
 router.get('/', (req, res) => {
     Post.findAll({
-            attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
+            attributes: [ 'id', 'title', 'content', 'created_at'
             ],
-            include: [{
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+            include: [{model: Comment,attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include: {
                         model: User,
                         attributes: ['username']
@@ -35,8 +25,7 @@ router.get('/', (req, res) => {
             }));
 
             res.render('homepage', {
-                posts,
-                loggedIn: req.session.loggedIn
+                posts, loggedIn: req.session.loggedIn
             });
         })
         .catch(err => {
@@ -50,12 +39,7 @@ router.get('/post/:id', (req, res) => {
             where: {
                 id: req.params.id
             },
-            attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
-            ],
+            attributes: [ 'id','title','content','created_at' ],
             include: [{
                     model: Comment,
                     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
@@ -73,7 +57,7 @@ router.get('/post/:id', (req, res) => {
         .then(dbPostData => {
             if (!dbPostData) {
                 res.status(404).json({
-                    message: 'No post found with this id'
+                    message: 'ERROR'
                 });
                 return;
             }
@@ -81,7 +65,7 @@ router.get('/post/:id', (req, res) => {
             const post = dbPostData.get({
                 plain: true
             });
-
+// render single user post 
             res.render('single-post', {
                 post,
                 loggedIn: req.session.loggedIn
@@ -92,7 +76,7 @@ router.get('/post/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+//login
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -101,7 +85,7 @@ router.get('/login', (req, res) => {
 
     res.render('login');
 });
-
+//sign up
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -113,8 +97,8 @@ router.get('/signup', (req, res) => {
 
 
 router.get('*', (req, res) => {
-    res.status(404).send("Can't go there!");
-    // res.redirect('/');
+    res.status(404).send("ERROR!");
+   
 })
 
 

@@ -3,7 +3,7 @@ const { Comment} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-
+// routes for comments 
 router.get("/", (req, res) => {
     Comment.findAll()
         .then((dbCommentData) => res.json(dbCommentData))
