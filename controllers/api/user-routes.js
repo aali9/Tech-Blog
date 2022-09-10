@@ -87,7 +87,7 @@ router.post('/login', (req, res) => {
                 });
                 return;
             }
-
+// save user login details
             req.session.save(() => {
                 req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
@@ -100,7 +100,7 @@ router.post('/login', (req, res) => {
             });
 
             const validPassword = dbUserData.checkPassword(req.body.password);
-
+// invalid password returns error 
             if (!validPassword) {
                 res.status(400).json({
                     message: 'Incorrect password!'
@@ -120,6 +120,7 @@ router.post('/login', (req, res) => {
             });
         });
 });
+//logout 
 
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
